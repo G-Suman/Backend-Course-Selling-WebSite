@@ -32,4 +32,37 @@ This project utilizes the following technologies:
 -   **MongoDB**: A flexible and scalable NoSQL database solution.
 -   **JWT (JSON Web Tokens)**: A secure means of transmitting information between parties as JSON objects.
 
+-   ## Getting Started
+
+To get started with this project, follow these steps:
+
+1.  **Clone the Repository**:
+    
+    `git clone https://github.com/G-Suman/Backend-Course-Selling-WebSite.git` 
+    
+2.  **Navigate to the Project Directory**:
+    
+    `cd course-selling-website-backend` 
+    
+3.  **Install Dependencies**:
+    
+    `npm install` 
+    
+4.  **Set Up Environment Variables**:
+    
+    -   Create a `.env` file in the root directory.
+    -   Add the following environment variables:
+       
+        `PORT=3000
+        MONGODB_URI=your_mongodb_uri
+        JWT_SECRET=your_jwt_secret` 
+        
+5.  **Run the Server**:
+    
+    `npm start` 
+    
+6.  **Access the Application**:
+    -   Once the server is running, you can access the application at `http://localhost:3000`.
+
+
 
