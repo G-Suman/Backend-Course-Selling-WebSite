@@ -2,6 +2,9 @@ import { Router } from "express";
 import { Admins } from "../database/index.mjs";
 import { z } from 'zod';
 import argon2 from 'argon2';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config()
 
 const router = Router();
 
@@ -41,5 +44,34 @@ console.error(err)
 })
 }
 });
+// login route 
+
+router.post('/login' , async (req,res)=>{
+  const {username , password } = req.body;
+ try{
+  const existingUser =await Admins.findOne({username: username})
+  if(!existingUser){
+    return res.status(403).json({
+error : "must signup at first ... "
+    })
+  }
+  const secretKey = process.env.Secret;
+  const userId = existingUser._id;
+  console.log(userId)
+const tokencreated = jwt.sign({userId} , secretKey , {expiresIn:'1h'})
+ return res.status(201).json({
+  token : tokencreated
+})
+ }
+  catch(err){
+console.error(err)
+res.status(500).json({
+  message : "unable to login try again ...."
+})
+  }
+})
+
+
+
 
 export default router;
