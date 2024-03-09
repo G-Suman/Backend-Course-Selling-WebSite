@@ -1,0 +1,30 @@
+{
+  "name": "coursesellingwebiste",
+  "version": "1.0.0",
+  "description": "This is the backend of the course Selling Webiste where we can perform the crud operations.",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon index.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/G-Suman/Backend-Course-Selling-WebSite.git"
+  },
+  "author": "Suman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/G-Suman/Backend-Course-Selling-WebSite/issues"
+  },
+  "homepage": "https://github.com/G-Suman/Backend-Course-Selling-WebSite#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "argon2": "^0.40.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "mongoose": "^8.2.1",
+    "zod": "^3.22.4"
+  }
+}
