@@ -15,12 +15,23 @@ console.error(err)
 }
 databaseConnection()
 
+
 const adminSchema = new Schema ({
-   name : {type: String , require : true , unique:true ,  max:30 },
-   username: {type: String , trim : true  , unique : true , require: true},
-   password : { type : String , require:true}
+   name : {type: String , required : true , unique:true ,  max:30 },
+   username: {type: String , trim : true  , unique : true , required: true},
+   password : { type : String , required:true}
 })
 
-const Admins = mongoose.model('admin' , adminSchema)
+const courseSchema = new Schema({
+   title: { type: String, required: true },
+   description: { type: String, required: true },
+   image: { type: String, required: true },
+   price: { type: Number, required: true, min: 0 },
+   userId: { type: Schema.Types.ObjectId, ref: 'Admins', required: true } 
+ });
 
-export {Admins} ;
+
+const Admins = mongoose.model('admin' , adminSchema)
+const Courses = mongoose.model('course' , courseSchema)
+
+export {Admins , Courses} ;
