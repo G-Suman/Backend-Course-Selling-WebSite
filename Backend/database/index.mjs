@@ -31,7 +31,15 @@ const courseSchema = new Schema({
  });
 
 
+ const userSchema = new Schema ({
+
+   name : {type: String , required : true , unique:true ,  max:30 },
+   username: {type: String , trim : true  , unique : true , required: true},
+   password : { type : String , required:true}
+ })
+
 const Admins = mongoose.model('admin' , adminSchema)
 const Courses = mongoose.model('course' , courseSchema)
+const Users = mongoose.model('users' , userSchema)
 
-export {Admins , Courses} ;
+export {Admins , Courses , Users} ;
