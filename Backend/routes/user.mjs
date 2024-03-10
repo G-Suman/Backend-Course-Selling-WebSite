@@ -1,8 +1,13 @@
 import { Router } from "express";
 const router = Router();
-import { Users } from "../database/index.mjs";
+import { Courses, Users } from "../database/index.mjs";
 import z from 'zod';
 import argon2 from 'argon2';
+import dotenv from 'dotenv';
+dotenv.config()
+import jwt from "jsonwebtoken"
+import userMiddleware from "../middleware/user.mjs";
+
 router.post('/signup', async (req, res) => {
     const { name, username, password } = req.body;
     try {
@@ -50,6 +55,51 @@ router.post('/signup', async (req, res) => {
         }
     }
 });
+
+router.post('/login' , async(req,res)=>{
+    const {username} = req.body;
+    try {
+        const userList = await Users.findOne({username : username})
+        if(!userList){
+            return res.status(403).json({
+                message : " invalid crediantals, user must signup at first"
+            })
+        }
+const SecretKey = process.env.Secret;
+const userId = userList._id;
+console.log(userId)
+
+ const token = jwt.sign({userId} , SecretKey , {expiresIn : "1h"})
+ res.status(200).json({
+    token : token
+ })
+
+    }
+    catch(err){
+console.error(err)
+res.status(500).json("internal server error....")
+    }
+})
+router.get('/courses', userMiddleware, async (req, res) => {
+    try {
+        const coursesList = await Courses.find();
+        if (!coursesList || coursesList.length === 0) {
+            return res.status(404).json({
+                error: "Courses not found..."
+            });
+        }
+        return res.status(200).json({
+            courses: coursesList
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({
+            message: "Error while searching the courses...."
+        });
+    }
+});
+
+
 
 export default router;
 
