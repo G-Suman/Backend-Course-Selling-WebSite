@@ -107,7 +107,6 @@ router.post('/courses/:courseId',userMiddleware , async(req,res)=>{
 error : "Course Id didnot included..."
             })
         }
-
         const userId = req.userId;
         
     await Users.findByIdAndUpdate(userId , {
@@ -126,6 +125,41 @@ res.status(500).json({
     }
 })
 
+router.get('/purchasedCourses', userMiddleware, async (req, res) => {
+    const userId = req.userId;
+    try {
+
+        const user = await Users.findById(userId);
+        if (!user) {
+            return res.status(404).json({
+                error: "User does not exist..."
+            });
+        }
+        const purchasedCourseIds = user.purchasedCourses;
+        
+        if (purchasedCourseIds.length === 0) {
+            return res.status(200).json({
+                message: 'No courses purchased.'
+            });
+        }
+        const purchasedCourses = await Courses.find({ _id: { $in: purchasedCourseIds } });
+
+        if (purchasedCourses.length === 0) {
+            return res.status(404).json({
+                error: 'No courses found for the purchased course IDs.'
+            });
+        }
+
+        res.status(200).json({
+            purchasedCourses: purchasedCourses
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            error: 'Internal server error.'
+        });
+    }
+});
 
 export default router;
 
