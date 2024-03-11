@@ -93,7 +93,7 @@ const upload = multer({storage:storage});
  router.post('/courses' ,adminMiddleware, upload.single('image') ,async(req,res)=>{
   const {title , description , price} = req.body;
   const image = req.file.filename;
-  const userId = req.userId;
+  const createdBy = req.userId;
 
 
 if(!title || !description || !price || !image){
@@ -110,7 +110,7 @@ price : z.number()
 
 try{
   const parsedPrice = parseFloat(price);
-  const courseData = {title , description , price:parsedPrice , image , userId}
+  const courseData = {title , description , price:parsedPrice , image , createdBy}
   Course.parse(courseData)
   const newCourse = await Courses.create(courseData);
    return res.status(201).json({

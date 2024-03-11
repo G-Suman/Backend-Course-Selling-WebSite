@@ -1,6 +1,6 @@
 import { Router } from "express";
 const router = Router();
-import { Courses, Users } from "../database/index.mjs";
+import { Admins, Courses, Users } from "../database/index.mjs";
 import z from 'zod';
 import argon2 from 'argon2';
 import dotenv from 'dotenv';
@@ -99,6 +99,32 @@ router.get('/courses', userMiddleware, async (req, res) => {
     }
 });
 
+router.post('/courses/:courseId',userMiddleware , async(req,res)=>{
+    const courseId = req.params.courseId;
+    try{
+        if(!courseId){
+          return  res.status(404).json({
+error : "Course Id didnot included..."
+            })
+        }
+
+        const userId = req.userId;
+        
+    await Users.findByIdAndUpdate(userId , {
+        $addToSet : {purchasedCourses:courseId}
+    })
+    res.status(200).json({
+        message:"Course purchased Successfully"
+    })
+
+    }
+    catch(err){
+console.error(err);
+res.status(500).json({
+    error : "Internal Server error"
+})
+    }
+})
 
 
 export default router;
