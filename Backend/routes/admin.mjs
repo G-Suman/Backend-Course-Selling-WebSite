@@ -127,7 +127,7 @@ details : validationError.errors
 
  })
 
- router.get('/courses', adminMiddleware, async(req,res)=>{
+ router.get('/courses',adminMiddleware,  async(req,res)=>{
   const userId = req.userId
   console.log(userId)
   try {
