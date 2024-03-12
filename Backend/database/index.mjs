@@ -1,38 +1,37 @@
 import mongoose from 'mongoose';
-const {Schema} = mongoose;
 import dotenv from 'dotenv';
 dotenv.config()
 
-const databaseConnection = async ()=>{
+const connectToDatabase = async ()=>{
 try {
 const url = process.env.MONGODB_URI;
 await mongoose.connect(url)
 console.log("MongoDb connected Sucessfully")
 }
 catch(err){
-console.error(err)
+console.error("Failed to connect to MongoDB:" , err)
 }
 }
-databaseConnection()
+connectToDatabase()
 
 
-const adminSchema = new Schema ({
-   name : {type: String , required : true , unique:true ,  max:30 },
+const adminSchema = new mongoose.Schema ({
+   name : {type: String , required : true , unique:true ,  maxlength:30 },
    username: {type: String , trim : true  , unique : true , required: true},
    password : { type : String , required:true}
   
 })
 
-const courseSchema = new Schema({
+const courseSchema = new  mongoose.Schema({
    title: { type: String, required: true },
    description: { type: String, required: true },
    image: { type: String, required: true },
    price: { type: Number, required: true, min: 0 },
-  userId: { type: Schema.Types.ObjectId, ref: 'Admins', required: true } 
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'Admins', required: true } 
  });
 
 
- const userSchema = new Schema ({
+ const userSchema = new mongoose.Schema ({
 
    name : {type: String , required : true , unique:true ,  max:30 },
    username: {type: String , trim : true  , unique : true , required: true},
@@ -43,8 +42,8 @@ const courseSchema = new Schema({
 }]
  })
 
-const Admins = mongoose.model('admin' , adminSchema)
-const Courses = mongoose.model('course' , courseSchema)
-const Users = mongoose.model('users' , userSchema)
+const Admin = mongoose.model('admin' , adminSchema)
+const Course = mongoose.model('course' , courseSchema)
+const User = mongoose.model('users' , userSchema)
 
-export {Admins , Courses , Users} ;
+export {Admin , Course , User} ;
