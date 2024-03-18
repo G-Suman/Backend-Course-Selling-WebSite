@@ -1,9 +1,8 @@
 # Course-Selling Website Backend
-**Description**
-Welcome to the Course-Selling Website Backend project! This is where we handle the technical stuff behind an online course-selling website. I have used popular tools like MongoDB, Node.js, and Express.js to make sure everything runs smoothly.
+**Description:**
+Welcome to the Course-Selling Website Backend project! This is where we handle the technical stuff behind an online course-selling website. I have used popular tools like PostgreSQL , Prisma ,  Node.js, and Express.js to make sure everything runs smoothly.
 
   
-Certainly! Here's an updated version:
 
 ----------
 
@@ -31,7 +30,8 @@ This project utilizes the following technologies:
 -   **Zod**: A TypeScript-first schema declaration and validation library.
 -   **MongoDB**: A flexible and scalable NoSQL database solution.
 -   **JWT (JSON Web Tokens)**: A secure means of transmitting information between parties as JSON objects.
-
+-   **Prisma**: Type-safe ORM for modern databases.
+-   **PostgreSQL**: Structured Open Source database.
 -   ## Getting Started
 
 To get started with this project, follow these steps:
