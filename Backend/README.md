@@ -55,7 +55,7 @@ To get started with this project, follow these steps:
        
         `PORT=3000
         MONGODB_URI=your_mongodb_uri
-        JWT_SECRET=your_jwt_secret` 
+        Secret=your_jwt_secret` 
         
 5.  **Run the Server**:
     
