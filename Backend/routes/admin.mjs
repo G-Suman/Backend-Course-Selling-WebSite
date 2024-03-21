@@ -11,6 +11,8 @@ import multer from "multer";
 
 const router = Router();
 
+// singup route for the admin
+
 router.post('/signup', async function (req, res) {
     const { name, username, password } = req.body;
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
@@ -127,6 +129,8 @@ details : validationError.errors
 
  })
 
+//  get the list of all courses created by the specific admin.
+
  router.get('/courses',adminMiddleware,  async(req,res)=>{
   const userId = req.userId
   console.log(userId)
@@ -145,6 +149,9 @@ res.status(200).json({courses});
 
   }
  })
+
+
+// global catches or error handling middleware  to handle the overall server error.
 
  router.use((err, req, res, next) => {
   console.error(err);
