@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+import mongoose from 'mongoose'; // odm for the nosql database.
+import dotenv from 'dotenv'; // third party libary , to keep the secrecy of the sensitive data
 dotenv.config()
 
 const connectToDatabase = async ()=>{
