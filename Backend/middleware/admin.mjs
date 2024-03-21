@@ -17,7 +17,7 @@ const adminMiddleware = (req, res, next) => {
             return sendErrorResponse(res, 403, "Unauthorized access");
         }
 
-        req.userId = decodedToken.userId;
+        req.userId = decodedToken.userId; // sending message to the next middleware , can be accessed.
         next();
     } catch (err) {
         console.error("Error in adminMiddleware:", err);
