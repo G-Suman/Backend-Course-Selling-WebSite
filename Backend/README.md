@@ -36,19 +36,24 @@ This project utilizes the following technologies:
 
 To get started with this project, follow these steps:
 
+ 0 .  **Fork the Repository**:
+ 
+ ` to contribute on this repo at first fork it `
+ 
 1.  **Clone the Repository**:
     
-    `git clone https://github.com/G-Suman/Backend-Course-Selling-WebSite.git` 
+    `git clone https://github.com/G-Suman/Backend-Course-Selling-WebSite.git`
     
-2.  **Navigate to the Project Directory**:
+    
+3.  **Navigate to the Project Directory**:
     
     `cd course-selling-website-backend` 
     
-3.  **Install Dependencies**:
+4.  **Install Dependencies**:
     
     `npm install` 
     
-4.  **Set Up Environment Variables**:
+5.  **Set Up Environment Variables**:
     
     -   Create a `.env` file in the root directory.
     -   Add the following environment variables:
@@ -57,11 +62,11 @@ To get started with this project, follow these steps:
         MONGODB_URI=your_mongodb_uri
         Secret=your_jwt_secret` 
         
-5.  **Run the Server**:
+6.  **Run the Server**:
     
     `npm start` 
     
-6.  **Access the Application**:
+7.  **Access the Application**:
     -   Once the server is running, you can access the application at `http://localhost:3000`.
 
 
