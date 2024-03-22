@@ -64,7 +64,7 @@ To get started with this project, follow these steps:
         
 6.  **Run the Server**:
     
-    `npm start` 
+    `npm start and suggest to use nodemon too...` 
     
 7.  **Access the Application**:
     -   Once the server is running, you can access the application at `http://localhost:3000`.
