@@ -67,7 +67,7 @@ To get started with this project, follow these steps:
     `npm start and suggest to use nodemon too...` 
     
 7.  **Access the Application**:
-    -   Once the server is running, you can access the application at `http://localhost:3000`.
+    -   Once the server is running, you can access the application at `http://localhost:3000` ` and can check too using postman`.
 
 
 
