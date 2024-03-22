@@ -8,6 +8,9 @@ dotenv.config()
 import jwt from "jsonwebtoken"
 import userMiddleware from "../middleware/user.mjs";
 
+
+// users signup
+
 router.post('/signup', async (req, res) => {
     const { name, username, password } = req.body;
     try {
@@ -25,6 +28,8 @@ router.post('/signup', async (req, res) => {
                 error: "Password must be at least 8 characters long and include one lowercase letter, one uppercase letter, one number, and one special character"
             });
         }
+
+        // using argon2 for password encrypton
         const hashedPassword = await argon2.hash(password)
 
         const userValidation = z.object({
@@ -56,6 +61,8 @@ router.post('/signup', async (req, res) => {
     }
 });
 
+// users login 
+
 router.post('/login' , async(req,res)=>{
     const {username} = req.body;
     try {
@@ -80,6 +87,9 @@ console.error(err)
 res.status(500).json("internal server error....")
     }
 })
+
+
+// list all the courses
 router.get('/courses', userMiddleware, async (req, res) => {
     try {
         const coursesList = await Courses.find();
@@ -98,6 +108,8 @@ router.get('/courses', userMiddleware, async (req, res) => {
         });
     }
 });
+
+// list the specific courses 
 
 router.post('/courses/:courseId',userMiddleware , async(req,res)=>{
     const courseId = req.params.courseId;
@@ -124,6 +136,8 @@ res.status(500).json({
 })
     }
 })
+
+// list the purchased courses
 
 router.get('/purchasedCourses', userMiddleware, async (req, res) => {
     const userId = req.userId;
@@ -160,6 +174,9 @@ router.get('/purchasedCourses', userMiddleware, async (req, res) => {
         });
     }
 });
+
+
+// global error middleware
 
 router.use((err, req, res, next) => {
     console.error(err);
